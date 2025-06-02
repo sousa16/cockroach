@@ -450,3 +450,14 @@ func createConstraintCheckOperations(
 	}
 	return results, nil
 }
+
+func createUnexpectedKeyCheckOperation(
+	tableDesc catalog.TableDescriptor,
+	tableName *tree.TableName,
+	asOf hlc.Timestamp,
+) (results []checkOperation, err error) {
+	var op checkOperation
+	op = newUnexpectedKeyCheckOperation(tableName, tableDesc, asOf)
+	results = append(results, op)
+	return results, nil
+}
